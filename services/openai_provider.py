@@ -1,5 +1,7 @@
-from .ai_base import AIBaseProvider
 import openai
+
+from .ai_base import AIBaseProvider
+
 
 class OpenAIProvider(AIBaseProvider):
     def __init__(self, api_key: str, model: str = "gpt-3.5-turbo"):
@@ -9,7 +11,7 @@ class OpenAIProvider(AIBaseProvider):
 
     def send_prompt(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}]
+            model=self.model, messages=[{"role": "user", "content": prompt}]
         )
-        return response.choices[0].message.content.strip()
+
+        return response
